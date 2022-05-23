@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React,{ useState } from "react"
 import "./App.css"
 import questions from './questions';
 import Progress_bar from './progress_bar';
@@ -16,15 +16,22 @@ function App() {
   
 
   function handleAnswer(isCorrect) {
+
     if (isCorrect) {
+
       setCorrectwidth(correctWidth+10)
       setTotalCorrect(totalCorrect+1)
       setScore(score + 1);
-    }else{
-      setinCorrectwidth(correctWidth+10)
-      setTotalIncorrect(totalCorrect+1)
-    }
+      console.log("true")
 
+    }
+    if(!isCorrect){
+
+      setinCorrectwidth(inCorrectWidth+10)
+      setTotalIncorrect(totalIncorrect+1)
+      console.log("false");
+      
+    }
 
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < questions.length) {
@@ -72,8 +79,7 @@ function App() {
       )}
     </div>
   </>
-
-  );
+  )
 }
 
 export default App;
