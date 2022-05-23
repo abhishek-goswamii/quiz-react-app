@@ -1,0 +1,30 @@
+.progress_container{
+    display: flex;
+    justify-content: space-around;
+    height: 1.2rem;
+    margin-bottom: 2.5rem;
+}
+
+.correct_container{
+    border-radius: 5px;
+    width: 40%;
+    background-color: aliceblue;
+}
+.correct_container > div{
+    width: 50%;
+    background: rgb(0, 255, 55);
+    height: 100%;
+
+}
+.incorrect_container{
+    border-radius: 5px;
+    width: 40%;
+    background-color: aliceblue;
+}
+
+.incorrect_container > div{
+    width: 50%;
+    background: rgb(255, 0, 0);
+    height: 100%;
+}
+

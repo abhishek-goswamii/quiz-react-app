@@ -1,55 +1,30 @@
-import { useState } from "react";
-import "./App.css";
+import { useState } from "react"
+import "./App.css"
+import questions from './questions';
+import Progress_bar from './progress_bar';
 
-const questions = [
-  {
-    questionText: "Qual o idiomafalado no Brasil?",
-    answerOptions: [
-      { answerText: "Português", isCorrect: true },
-      { answerText: "Inglês", isCorrect: false },
-      { answerText: "Francês", isCorrect: false },
-      { answerText: "Alemão", isCorrect: false },
-    ],
-  },
-  {
-    questionText:
-      "Quais os países que têm a maior e a menor expectativa de vida do mundo?",
-    answerOptions: [
-      { answerText: "Japão e Serra Leoa", isCorrect: true },
-      { answerText: "Austrália e Afeganistã", isCorrect: false },
-      { answerText: "Itália e Chade", isCorrect: false },
-      { answerText: "Brasil e Congo", isCorrect: false },
-    ],
-  },
-  {
-    questionText: "Qual empresa criou o Iphone?",
-    answerOptions: [
-      { answerText: "Apple", isCorrect: true },
-      { answerText: "Intel", isCorrect: false },
-      { answerText: "Amazon", isCorrect: false },
-      { answerText: "Microsoft", isCorrect: false },
-    ],
-  },
-  {
-    questionText: "Como aprender a programar?",
-    answerOptions: [
-      { answerText: "Praticando o que se aprende", isCorrect: true },
-      { answerText: "Vendo vídeo", isCorrect: false },
-      { answerText: "Lendo", isCorrect: false },
-      { answerText: "Dormindo", isCorrect: false },
-    ],
-  },
-];
 
 function App() {
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
+  const [correctWidth , setCorrectwidth] = useState(0)
+  const [inCorrectWidth , setinCorrectwidth] = useState(0)
+  const [totalCorrect , setTotalCorrect] = useState(0)
+  const [totalIncorrect , setTotalIncorrect] = useState(0)
+  
+
   function handleAnswer(isCorrect) {
     if (isCorrect) {
+      setCorrectwidth(correctWidth+10)
+      setTotalCorrect(totalCorrect+1)
       setScore(score + 1);
+    }else{
+      setinCorrectwidth(correctWidth+10)
+      setTotalIncorrect(totalCorrect+1)
     }
+
 
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < questions.length) {
@@ -59,7 +34,12 @@ function App() {
     }
   }
 
-  return (
+  return (<>
+
+    <h2>Progress Bar</h2>
+
+    <Progress_bar correctwidth={correctWidth + "%"} incorrectwidth={inCorrectWidth + "%"} total={questions.length} total_incorrect={totalIncorrect} total_correct={totalCorrect} />
+
     <div className="app">
       {showScore ? (
         <div className="score-section">
@@ -91,6 +71,8 @@ function App() {
         </>
       )}
     </div>
+  </>
+
   );
 }
 

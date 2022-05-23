@@ -12,6 +12,10 @@ body {
   min-height: 100vh;
 }
 
+h2{
+  margin-left: 10rem;
+}
+
 .app {
   background-color: #252d4a;
   width: 450px;
